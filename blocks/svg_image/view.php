@@ -11,11 +11,10 @@ if ($fallbackFile) {
 	$fallback = 'onerror="this.src=\''.$fallbackFile->getRelativePath() . '\';this.onerror=null;"';
 }
 
-echo '<img alt="'.$alttext.'" class="ccm-svg-block" src="'.$SVGFile->getRelativePath() .'" '.$fallback.'>';
+if ($SVGFile) {
+	echo '<img alt="'.$alttext.'" class="ccm-svg-block" src="'.$SVGFile->getRelativePath() .'" '.$fallback.' />';
+}
 
 if ($linkURL) {
 	 echo '</a>';
-} 
- 
-?>
-
+}
