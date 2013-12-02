@@ -12,7 +12,7 @@ if ($fallbackFile) {
 }
 
 if ($SVGFile) {
-	echo '<img alt="'.$alttext.'" class="ccm-svg-block" src="'.$SVGFile->getRelativePath() .'" '.$fallback.' />';
+	echo '<img alt="'.$altText.'" class="ccm-svg-block" src="'.$SVGFile->getRelativePath() .'" '.$fallback.' />';
 }
 
 if ($linkURL) {
