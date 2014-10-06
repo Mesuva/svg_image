@@ -1,12 +1,14 @@
-<?php       
+<?php
+// Author: Ryan Hewitt - http://www.mesuva.com.au
+namespace Concrete\Package\SvgImage;
+use Package;
+use BlockType;
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
-class SvgImagePackage extends Package {
+class Controller extends Package {
 
 	protected $pkgHandle = 'svg_image';
-	protected $appVersionRequired = '5.6.0';
-	protected $pkgVersion = '0.9.2';
+	protected $appVersionRequired = '5.7.0.1';
+	protected $pkgVersion = '0.9.1';
 	
 	public function getPackageDescription() {
 		return t("Adds SVG images with an optional fallback image from the library to pages.");

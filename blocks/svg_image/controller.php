@@ -1,8 +1,14 @@
-<?php 
-	defined('C5_EXECUTE') or die("Access Denied.");	
+<?php
 
-		class SVGImageBlockController extends BlockController {
-	
+namespace Concrete\Package\SVGImage\Block\SVGImage;
+use \Concrete\Core\Block\BlockController;
+use Loader;
+use Core;
+use File;
+use Page;
+
+class Controller extends BlockController
+{
 			protected $btInterfaceWidth = 400;
 			protected $btInterfaceHeight = 450;
 			protected $btTable = 'btSVGImage';
