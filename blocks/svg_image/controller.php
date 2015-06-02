@@ -48,13 +48,23 @@ class Controller extends BlockController
 			function getAltText() {return $this->altText;}
 			function getExternalLink() {return $this->externalLink;}
 			function getInternalLinkCID() {return $this->internalLinkCID;}
-			function getLinkURL() {
+
+            function getLinkURL() {
 				if (!empty($this->externalLink)) {
 					return $this->externalLink;
 				} else if (!empty($this->internalLinkCID)) {
 					$linkToC = Page::getByID($this->internalLinkCID);
 					return (empty($linkToC) || $linkToC->error) ? '' : Loader::helper('navigation')->getLinkToCollection($linkToC);
-				} else {
+				} elseif ($this->linkFID > 0) {
+                    $file = File::getByID($this->linkFID);
+                    if ($file) {
+                        if ($this->forceDownload) {
+                            return $file->getForceDownloadURL();
+                        } else {
+                            return $file->getDownloadURL();
+                        }
+                    }
+                } else {
 					return '';
 				}
 			}
@@ -62,15 +72,24 @@ class Controller extends BlockController
 			public function save($args) {		
 				$args['fallbackID'] = ($args['fallbackID'] != '') ? $args['fallbackID'] : 0;
 				$args['fID'] = ($args['fID'] != '') ? $args['fID'] : 0;
+                $args['forceDownload'] = ($args['forceDownload']) ? '1' : '0';
+
 				switch (intval($args['linkType'])) {
 					case 1:
+						$args['linkFID'] = 0;
 						$args['externalLink'] = '';
 						break;
 					case 2:
+						$args['linkFID'] = 0;
 						$args['internalLinkCID'] = 0;
 						break;
+                    case 3:
+                        $args['externalLink'] = '';
+                        $args['internalLinkCID'] = 0;
+                        break;
 					default:
-						$args['externalLink'] = '';
+                        $args['linkFID'] = 0;
+                        $args['externalLink'] = '';
 						$args['internalLinkCID'] = 0;
 						break;
 				}
@@ -83,6 +102,7 @@ class Controller extends BlockController
 				$this->set('altText',$this->getAltText());
 				$this->set('SVGFile',$this->getFileObject());
 				$this->set('fallbackFile',$this->getFileFallbackObject());
+
 			}
 	
 		}

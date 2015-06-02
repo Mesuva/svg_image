@@ -7,12 +7,13 @@ if ($linkURL) {
 
 $fallback = '';
 
-if ($fallbackFile) {
-	$fallback = 'onerror="this.src=\''.$fallbackFile->getRelativePath() . '\';this.onerror=null;"';
-}
-
 if ($SVGFile) {
-    echo '<img alt="' . $altText . '" class="ccm-svg-block" src="' . $SVGFile->getRelativePath() . '" ' . $fallback . ' />';
+    if ($fallbackFile) {
+        $fallback = 'onerror="this.src=\''.$fallbackFile->getURL() . '\';this.onerror=null;"';
+    }
+    echo '<img alt="' . $altText . '" class="ccm-svg-block" src="' . $SVGFile->getURL() . '" ' . $fallback . ' />';
+} elseif ($fallbackFile) {
+    echo '<img alt="' . $altText . '" class="ccm-svg-block" src="' . $fallbackFile->getURL() . '" />';
 }
 
 if ($linkURL) {
