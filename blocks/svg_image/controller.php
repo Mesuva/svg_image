@@ -18,7 +18,7 @@ class Controller extends BlockController
 			protected $btCacheBlockOutputForRegisteredUsers = true;
 			protected $btWrapperClass = 'ccm-ui';
 			protected $btExportFileColumns = array('fID','fallbackID');
-	
+			protected $btDefaultSet = 'basic';	
 		
 			public function getBlockTypeDescription() {
 				return t("Adds SVG images and fall back images from the library to pages.");

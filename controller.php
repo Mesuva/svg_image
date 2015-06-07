@@ -8,7 +8,7 @@ class Controller extends Package {
 
 	protected $pkgHandle = 'svg_image';
 	protected $appVersionRequired = '5.7.0.1';
-	protected $pkgVersion = '0.9.6';
+	protected $pkgVersion = '0.9.7';
 	
 	public function getPackageDescription() {
 		return t("Adds SVG images with an optional fallback image from the library to pages.");
